@@ -1,17 +1,18 @@
-version: 2
+version: 2.1
+orbs:
+  sysdig: sysdig/sysdig@0.1.0
 jobs:
-build:
-  machine: true
-  environment:
-    IMAGE_NAME: "dasalebr/vulnerable-node"
-    SCAN_IMAGE_NAME: "sysdiglabs/secure-inline-scan:latest"
-  steps:
-    # checkout the source code
-    - checkout
-    # login
-    - run: |
-        docker login --username "$DOCKER_USER" --password "$DOCKER_PASS"
-    # build the application image
-    - run: docker build -t "$IMAGE_NAME" .
-    # scan the image
-    - run: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock $SCAN_IMAGE_NAME -s https://secure.sysdig.com -k "$SYSDIG_SECURE_TOKEN" "$IMAGE_NAME"
+  example-job:
+    docker:
+      # replace with your preferred image
+      - image: docker:stable
+    steps:
+      - sysdig/inline-image-scan:
+          image-tag: dasalebr/vulnerable-node
+          sysdig-secure-token: '1fb2bfae-a0d1-435e-ba1a-119767a0145c' 
+          sysdig-secure-url: https://eu1.app.sysdig.com 
+
+workflows:
+  example-workflow:
+    jobs:
+      - example-job
