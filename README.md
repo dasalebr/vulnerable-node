@@ -1,4 +1,6 @@
 Vulnerable Node
+
+[![Git](https://app.soluble.cloud/api/v1/public/badges/4473bebe-de88-4d1e-aa14-2def4a113301.svg?orgId=288883884012)](https://app.soluble.cloud/repos/details/github.com/dasalebr/vulnerable-node?orgId=288883884012)  
 ===============
 
 ![Logo](https://raw.githubusercontent.com/cr0hn/vulnerable-node/master/images/logo-small.png)
